@@ -1,0 +1,32 @@
+{
+  "name": "booking-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "build": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaganarasu/hotel-booking-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaganarasu/hotel-booking-backend/issues"
+  },
+  "homepage": "https://github.com/jaganarasu/hotel-booking-backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.6",
+    "nodemon": "^2.0.22"
+  }
+}
