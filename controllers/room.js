@@ -66,8 +66,18 @@ export const deleteRoom = async (req, res, next) => {
 };
 export const getRoom = async (req, res, next) => {
   try {
-    const room = await Room.findById(req.params.id);
-    res.status(200).json(room);
+    const roomId = req.params.id;
+    const room = await Room.findById(roomId);
+    if (!room) {
+      return res.status(404).json({
+        success: false,
+        message: "Room not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      data: room,
+    });
   } catch (err) {
     next(err);
   }

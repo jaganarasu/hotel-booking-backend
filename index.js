@@ -6,6 +6,7 @@ import usersRoute from "./routes/users.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import cookieParser from "cookie-parser";
+import { PORT, DB_URI } from './config.js';
 import cors from "cors";
 
 const app = express();
@@ -13,7 +14,9 @@ dotenv.config();
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
     console.log("Connected to mongoDB.");
   } catch (error) {
     throw error;
@@ -34,6 +37,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
+
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";
@@ -45,7 +49,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(process.env.PORT || 8800, () => {
+app.listen(process.env.PORT || 3000, () => {
   connect();
   console.log("Connected to backend 🎄✨");
 });
